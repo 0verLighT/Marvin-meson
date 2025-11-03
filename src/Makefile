@@ -1,15 +1,17 @@
 NAME = libft.a
 CC = cc
 CFLAGS = -Wall -Wextra -Werror
-
-SRC = ft_strcmp.c\
-	ft_strlen.c\
-	ft_bbl.c\
-	ft_strjoin.c\
-	ft_memset.c\
-	ft_lenfill.c\
-	ft_strcpy.c\
-	ft_setalloc.c\
+DF = "functions/"
+DC = "commands/"
+SRC = $(DF)ft_strcmp.c\
+	$(DF)ft_strlen.c\
+	$(DF)ft_bbl.c\
+	$(DF)ft_strjoin.c\
+	$(DF)ft_memset.c\
+	$(DF)ft_lenfill.c\
+	$(DF)ft_strcpy.c\
+	$(DF)ft_setalloc.c\
+	$(DC)struct_command.c\
 
 
 OBJ = $(SRC:.c=.o)

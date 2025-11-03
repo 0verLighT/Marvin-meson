@@ -1,4 +1,4 @@
-#include "libftmarvin.h"
+#include "libft.h"
 
 int ft_strcmp(char *str, char *cmp)
 {

@@ -1,6 +1,6 @@
-#include "libftmarvin.h"
+#include "libft.h"
 
-void	*ft_strcpy(char *dest, char *src)
+char	*ft_strcpy(char *dest, char *src)
 {
 	size_t	i;
 

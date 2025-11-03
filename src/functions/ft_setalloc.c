@@ -1,3 +1,5 @@
+#include "libft.h"
+
 char	*ft_setalloc(char c, size_t len)
 {
 	char	*res;
