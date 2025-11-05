@@ -38,7 +38,7 @@ If you have ideas for useful commands or features, feel free to open an issue to
 ## Basic Roadmap
 
 - [ ] Add basic printable commands
-- [ ] Add download script
+- [ ] Add download script with export in PATH
 - [ ] Add `emot` command
 
 ## Macro Command Roadmap
