@@ -1,4 +1,4 @@
-#include ""
+#include "libcmd.h"
 
 int	cmd_bbl(int argc, char **argv)
 {
@@ -13,14 +13,14 @@ int	cmd_bbl(int argc, char **argv)
 	emot = "neutral";
 	llen = 30;
 	fd = 1;
-	while (argv[i])
+	while (argv[i] && i < (size_t) argc)
 	{
-		if ((ft_strcmp(argv[i], "-t" || ft_strcmp(argv[i], "--text") && argv[i + 1])
+		if ((!strcmp(argv[i], "-t") || strcmp(argv[i], "--text")) && argv[i + 1])
 		{
-			txt = argv[i + 1];	
+			txt = argv[i + 1];
 		}
 		i++;
 	}
-	ft_bbl(argv[0]
+	bbl(txt, emot, llen, fd);
 	return (0);
 }

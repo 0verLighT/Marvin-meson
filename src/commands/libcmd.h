@@ -3,7 +3,19 @@
 
 # include <stdlib.h>
 # include <unistd.h>
+# include "../functions/libft.h"
 
-void	cmd_help(int argc, char **argv);
+typedef int	(*cmd_func) (int argc, char **argv);
+
+struct		cmd
+{
+    const char	*name;
+    cmd_func	fn;
+};
+
+extern struct cmd commands_list[];
+
+int	cmd_help(int argc, char **argv);
+int	cmd_bbl(int argc, char **argv);
 
 #endif
