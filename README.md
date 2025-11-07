@@ -18,15 +18,15 @@ If you have ideas for useful commands or features, feel free to open an issue to
 
 ## Basic Roadmap
 
-- [ ] Add basic printable commands like bbl, albbl, ou show
+- [ ] Add basic printable commands like `bbl`, `albbl`, ou `show`
 - [ ] Add download script with export in PATH
 - [ ] Add `emot` command
 
 ## Macro Command Roadmap
 
 - [ ] Add `macropy` command
-- [ ] Add reload command for user functions
-- [ ] Add delete command for user functions
+- [ ] Add `reload` command for user functions
+- [ ] Add `delete` command for user functions
 - [ ] Add `macroc` command
 - [ ] Add `macrocpp` command
 - [ ] Add `macrosh` command
@@ -34,10 +34,10 @@ If you have ideas for useful commands or features, feel free to open an issue to
 
 ## Command Roadmap
 
-- [ ] Add shutdown command
-- [ ] Add reboot command
-- [ ] Add timer command
-- [ ] Add date commande with flag for syntaxe
+- [ ] Add `shutdown` command
+- [ ] Add `reboot` command
+- [ ] Add `timer` command
+- [ ] Add `date` commande with flag for syntaxe
 - [ ] Add basic universal commands (based on user ideas)
 
 ## Other (If Time Permits)
