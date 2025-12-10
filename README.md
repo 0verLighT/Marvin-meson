@@ -1,6 +1,6 @@
 # Marvin the Paranoid Assistant
 
-Marvina is a personal assistant designed to automate tasks or create macros in Python, and soon in Bash, C, and C++. Macros are functions in a supported language that Marvin includes in his code as a subcommand. You can also use basic commands like `marvin albbl "text"` in your `.bashrc` or `.zshrc` by defining simple functions. Macros are just one part of Marvin's capabilities—over time, you could even code a game and integrate it into Marvin using `sys` and importing different files.
+Marvin is a personal assistant designed to automate tasks or create macros in Python, and soon in Bash, C, and C++. Macros are functions in a supported language that Marvin includes in his code as a subcommand. You can also use basic commands like `marvin albbl "text"` in your `.bashrc` or `.zshrc` by defining simple functions. Macros are just one part of Marvin's capabilities—over time, you could even code a game and integrate it into Marvin using `sys` and importing different files.
 
 ## Commands
 
@@ -10,7 +10,15 @@ Marvina is a personal assistant designed to automate tasks or create macros in P
 
 ## Download
 
-Not now, wait a moment
+For download Marvin you need to use this command in your shell terminal.
+```bash
+# Clone the repo
+git clone https://www.github.com/SeigneurLefou/Marvin-the-Paranoid-Assistant .marvin
+# Move in the folder
+cd .marvin
+# Build the binary
+make build
+```
 
 ## User Contributions
 
@@ -19,7 +27,8 @@ If you have ideas for useful commands or features, feel free to open an issue to
 ## Basic Roadmap
 
 - [ ] Add basic printable commands like `bbl`, `albbl`, ou `show`
-- [ ] Add download script with export in PATH
+- [x] Add download script with export in PATH
+- [ ] Add graphic annotation to the build and remove functions
 - [ ] Add `emot` command
 
 ## Command Roadmap
