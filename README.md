@@ -6,7 +6,7 @@ Marvin is a personal assistant designed to automate tasks or create macros in Py
 
 | Command | Description |
 | --- | --- |
-|  |  |
+| update | A commande for update Marvin to the next version |
 
 ## Download
 
