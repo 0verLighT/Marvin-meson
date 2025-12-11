@@ -23,7 +23,7 @@ export PATH=$PATH:$HOME/.local/bin/
 ```
 
 If it doesn't work add this command to your config file :
-```
+```bash
 export PATH=$PATH:$HOME/.local/bin/
 ```
 
