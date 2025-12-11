@@ -20,6 +20,11 @@ cd .marvin
 make build
 ```
 
+If it doesn't work add this command to your config file :
+```
+export PATH = $PATH:.local/bin/
+```
+
 ## User Contributions
 
 If you have ideas for useful commands or features, feel free to open an issue to present your suggestion ! If the idea you suggest is not universal, give it as an add-on.
