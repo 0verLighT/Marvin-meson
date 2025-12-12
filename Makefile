@@ -1,6 +1,6 @@
 # === VARIABLES ===============================================================
 
-NAME = lib_marvin.a
+NAME = marvin.a
 MARV = .marvin
 EXE = marvin
 CC = cc
