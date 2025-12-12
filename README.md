@@ -1,6 +1,6 @@
 # Marvin the Paranoid Assistant
 
-Marvin is a personal assistant designed to automate tasks or create macros in Python, and soon in Bash, C, and C++. Macros are functions in a supported language that Marvin includes in his code as a subcommand. You can also use basic commands like `marvin albbl "text"` in your `.bashrc` or `.zshrc` by defining simple functions. Macros are just one part of Marvin's capabilities—over time, you could even code a game and integrate it into Marvin using `sys` and importing different files.
+Marvin is a terminal assistant who simplify complexe task with basic commandes and more with macros, functions who be add by the user.
 
 ## Commands
 
