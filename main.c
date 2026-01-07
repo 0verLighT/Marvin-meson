@@ -1,4 +1,4 @@
-#include "src/commands/libcmd.h"
+#include "libcmd.h"
 
 int main(int argc, char **argv)
 {

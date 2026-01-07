@@ -3,7 +3,7 @@
 
 # include <stdlib.h>
 # include <unistd.h>
-# include "../utils/libft.h"
+# include "libft.h"
 
 typedef int	(*cmd_func) (int argc, char **argv);
 

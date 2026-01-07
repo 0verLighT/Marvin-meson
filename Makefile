@@ -5,6 +5,7 @@ MARV = .marvin
 EXE = marvin
 CC = cc
 CFLAGS = -Wall -Wextra -Werror
+INCLUDE = -Iincludes
 DB = build/
 DS = src/
 DU = $(DS)utils/
@@ -27,7 +28,7 @@ $(NAME) : $(OBJ)
 
 $(DB)%.o : $(DS)%.c
 	mkdir -p $(@D)
-	$(CC) $(CFLAGS) -c $< -o $@
+	$(CC) $(CFLAGS) $(INCLUDE) -c $< -o $@
 
 # === CLEAN RULES =============================================================
 
@@ -49,7 +50,7 @@ desintall : remove
 # === INSTALL RULES ============================================================
 
 main : $(NAME)
-	$(CC) $(CFLAGS) main.c $(NAME) -o $(EXE)
+	$(CC) $(CFLAGS) $(INCLUDE)  main.c $(NAME) -o $(EXE)
 
 path :
 	mv $(EXE) $(HOME)/.local/bin/
