@@ -1,4 +1,5 @@
-**.o
-**.out
-build/*
+*.o
+*.out
+build/
+builddir/
 *.a
