@@ -1,5 +1,5 @@
-*/*.o
-*/*.out
-build/*
+*.o
+*.out
+build/
 *.a
 */*.a

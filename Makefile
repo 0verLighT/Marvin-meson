@@ -1,46 +1,42 @@
 # === VARIABLES ===============================================================
-
-NAME = marvin.a
-MARV = .marvin
+MARV = .marvin/
 EXE = marvin
 CC = cc
 CFLAGS = -Wall -Wextra -Werror
-DB = build/
+INCLUDE = -Iincludes
+BUILD = build/
+BIN = bin/
 DS = src/
-DU = $(DS)utils/
-DC = $(DS)commands/
-SRC =   $(DU)printable.c \
-        $(DU)warping.c \
-        $(DU)alloc.c \
-        $(DC)list_cmd.c \
-        $(DC)cmd_help.c \
-        $(DC)cmd_update.c \
-        $(DC)cmd_bbl.c
+CMD = cmd/
+SRC =   $(DS)printable.c \
+        $(DS)warping.c \
+        $(DS)alloc.c \
+        $(DS)list_cmd.c \
+        $(DS)cmd_help.c \
+        $(DS)cmd_update.c \
+
+CMD_EXE = bbl
+
+CMD_SRC = $(addprefix $(CMD)cmd_,$(addsuffix .c,$(CMD_EXE)))
 
 # =============================================================================
 
 # === OBJECT RULES ============================================================
 OBJ = $(patsubst $(DS)%.c,$(DB)%.o,$(SRC))
 
-$(NAME) : $(OBJ)
-	ar crs $(NAME) $(OBJ)
-
 $(DB)%.o : $(DS)%.c
 	mkdir -p $(@D)
-	$(CC) $(CFLAGS) -c $< -o $@
+	$(CC) $(CFLAGS) $(INCLUDE) -c $< -o $@
 
 # === CLEAN RULES =============================================================
 
 clean : 
-	rm -Rf "./bin"
+	rm -Rf "$(HOME)/$(MARV)/$(BUILD)"
 
 fclean : clean
-	rm -f "$(NAME)"
-
-remove : fclean
 	rm -f $(HOME)/.local/bin/$(EXE)
 
-desintall : remove
+uninstall : remove
 	rm -Rf $(HOME)/$(MARV)
 	echo "Good bye"
 	
@@ -48,16 +44,17 @@ desintall : remove
 
 # === INSTALL RULES ============================================================
 
-main : $(NAME)
-	$(CC) $(CFLAGS) main.c $(NAME) -o $(EXE)
+$(EXE) : $(OBJ)
+	$(CC) $(CFLAGS) $(INCLUDE)  main.c $(OBJ) -o $(EXE)
 
-path :
+$(addprefix $(BIN),$(EXTRA_CMDS)) : $(DB)cmd_%.o $(OBJ)
+	@mkdir -p $(@D)
+	$(CC) $(CFLAGS) $(INCLUDE) $(DB)cmd_$*.o $(OBJ) -o $@
+
+build : $(EXE) $(addprefix $(BIN),$(EXTRA_CMDS))
 	mv $(EXE) $(HOME)/.local/bin/
-
-
-build : re
-	export PATH=$PATH:$HOME/.local/bin/
-	echo "You can enjoy now"
+	export PATH=$(PATH):$(HOME)/.local/bin/
+	@echo "You can enjoy now"
 
 update :
 	cd $(HOME)/$(MARV)
@@ -66,8 +63,8 @@ update :
 
 # =============================================================================
 
-all : $(NAME)
+all : $(EXE) $(addprefix $(BIN),$(EXTRA_CMDS)) build
 
-re : fclean all main path build
+re : fclean all
 
-.PHONY: all clean fclean re
+.PHONY: all clean fclean re uninstall build

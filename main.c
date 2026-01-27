@@ -1,4 +1,4 @@
-#include "src/commands/libcmd.h"
+#include "libcmd.h"
 
 int main(int argc, char **argv)
 {
@@ -15,5 +15,9 @@ int main(int argc, char **argv)
 			return (c->fn(argc - 2, argv + 2));
 		c++;
 	}
+	/* Il faut trouver un moyen de pouvoir executer les binaires du dossier
+	 *
+	 * .alfred/bin
+	*/
 	return (1);
 }

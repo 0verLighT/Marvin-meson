@@ -3,7 +3,7 @@
 
 # include <stdlib.h>
 # include <unistd.h>
-# include "../utils/libft.h"
+# include "libft.h"
 
 typedef int	(*cmd_func) (int argc, char **argv);
 
@@ -16,7 +16,6 @@ struct		cmd
 extern struct cmd commands_list[];
 
 int	cmd_help(int argc, char **argv);
-int	cmd_bbl(int argc, char **argv);
 int cmd_update(int argc, char **argv);
 
 #endif
