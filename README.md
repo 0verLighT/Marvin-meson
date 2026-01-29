@@ -1,6 +1,6 @@
 # Marvin the Paranoid Assistant
 
-Marvin is a terminal assistant who simplify complexe task with basic commandes and more with macros, functions who be add by the user.
+Marvin is a terminal assistant who simplify complexe task with basic commands and more with macros, functions who be add by the user.
 
 ## Commands
 
