@@ -1,19 +1,28 @@
 #ifndef LIBCMD_H
 # define LIBCMD_H
 
-# include <stdlib.h>
-# include <unistd.h>
-# include "libft.h"
-
+// TYPEDEF
 typedef int	(*cmd_func) (int argc, char **argv);
 
+// STRUCT
 struct		cmd
 {
     const char	*name;
     cmd_func	fn;
 };
 
-extern struct cmd commands_list[];
+struct		cmd_path
+{
+    const char	*name;
+    const char	*path;
+};
+
+// INCLUDES
+# include "list_cmd.h"
+# include "list_cmd.h"
+# include <stdlib.h>
+# include <unistd.h>
+# include "libft.h"
 
 int	cmd_help(int argc, char **argv);
 int cmd_update(int argc, char **argv);

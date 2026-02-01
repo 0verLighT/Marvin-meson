@@ -46,12 +46,17 @@ uninstall : remove
 
 # === INSTALL RULES ============================================================
 
-$(EXE) : $(OBJ)
-	$(CC) $(CFLAGS) $(INCLUDE)  main.c $(OBJ) -o $(EXE)
-
-$(CMD_EXE) : $(CMD_SRC)
+$(CMD_EXE) : $(CMD_SRC) $(CMD_LIST)
 	@mkdir -p $(BIN)
 	$(CC) $(CFLAGS) $(INCLUDE) $< $(OBJ) -o $@
+	echo "	{"$>"},"bin/"$>"}," >> includes/cmd_path.h
+
+link:
+	echo "	{NULL: NULL}" >> includes/cmd_path.h
+	echo "};" >> includes/cmd_path.h
+
+(EXE) : $(OBJ)
+	$(CC) $(CFLAGS) $(INCLUDE)  main.c $(OBJ) -o $(EXE)
 
 build : $(EXE) $(CMD_EXE)
 	mv $(EXE) $(HOME)/.local/bin/
@@ -65,8 +70,8 @@ update :
 
 # =============================================================================
 
-all : $(EXE) $(addprefix $(BIN),$(EXTRA_CMDS)) build
-
 re : fclean all
 
-.PHONY: all clean fclean re uninstall build
+all : $(CMD_EXE) link $(EXE) build
+
+.PHONY: all clean fclean uninstall re link build
