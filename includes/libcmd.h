@@ -18,8 +18,6 @@ struct		cmd_path
 };
 
 // INCLUDES
-# include "list_cmd.h"
-# include "list_cmd.h"
 # include <stdlib.h>
 # include <unistd.h>
 # include "libft.h"

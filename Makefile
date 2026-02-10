@@ -1,77 +1,85 @@
 # === VARIABLES ===============================================================
 MARV = .marvin/
+PROJ = $(HOME)/$(MARV)
 EXE = marvin
 CC = cc
 CFLAGS = -Wall -Wextra -Werror
 INCLUDE = -Iincludes
-BUILD = build/
-BIN = bin/
-DS = src/
-CMD = cmd/
-SRC =   $(DS)printable.c \
+BUILD = $(PROJ)build/
+BIN = $(PROJ)bin/
+DS = $(PROJ)src/
+CMD = $(PROJ)cmd/
+SRC =	$(DS)printable.c \
         $(DS)warping.c \
         $(DS)alloc.c \
-        $(DS)list_cmd.c \
         $(DS)cmd_help.c \
-        $(DS)cmd_update.c \
+        $(DS)cmd_update.c
 
 CMD_LIST =	bbl
 
-CMD_SRC = $(addprefix $(CMD)cmd_,$(addsuffix .c,$(CMD_LIST)))
+CMD_SRC = $(addprefix $(CMD)cmd_, $(addsuffix .c, $(CMD_LIST)))
 
-CMD_EXE = $(addprefix $(BIN),$(CMD_LIST))
+CMD_EXE = $(addprefix $(BIN), $(CMD_LIST))
 
 # =============================================================================
 
 # === OBJECT RULES ============================================================
 OBJ = $(patsubst $(DS)%.c,$(BUILD)%.o,$(SRC))
 
-$(BUILD)%.o : $(DS)%.c
+$(BUILD)%.o: $(DS)%.c
 	mkdir -p $(BUILD)
 	$(CC) $(CFLAGS) $(INCLUDE) -c $< -o $@
 
+# =============================================================================
+
+# === UTILS RULES ============================================================
+
+re: fclean all bin
+
+all: $(EXE) build
+
+# =============================================================================
+
 # === CLEAN RULES =============================================================
 
-clean : 
-	rm -Rf "$(HOME)/$(MARV)$(BUILD)"
+clean: 
+	rm -Rf "$(BUILD)"
 
-fclean : clean
+fclean: clean
 	rm -f $(HOME)/.local/bin/$(EXE)
+	echo "struct cmd commands_list[] = {" > includes/cmd_path.h
 
-uninstall : remove
-	rm -Rf $(HOME)/$(MARV)
+uninstall: remove
+	rm -Rf $(PROJ)
 	echo "Good bye"
 	
 # =============================================================================
 
 # === INSTALL RULES ============================================================
 
-$(CMD_EXE) : $(CMD_SRC) $(CMD_LIST)
+$(CMD_EXE): $(CMD_SRC)
 	@mkdir -p $(BIN)
 	$(CC) $(CFLAGS) $(INCLUDE) $< $(OBJ) -o $@
-	echo "	{"$>"},"bin/"$>"}," >> includes/cmd_path.h
+	echo "	{"${$@%"$(BIN)"}"}, $@}," >> includes/cmd_path.h
 
 link:
 	echo "	{NULL: NULL}" >> includes/cmd_path.h
 	echo "};" >> includes/cmd_path.h
 
-(EXE) : $(OBJ)
+$(EXE): $(OBJ)
 	$(CC) $(CFLAGS) $(INCLUDE)  main.c $(OBJ) -o $(EXE)
 
-build : $(EXE) $(CMD_EXE)
+bin: $(CMD_EXE) link
+
+build: $(EXE)
 	mv $(EXE) $(HOME)/.local/bin/
-	export PATH=$(PATH):$(HOME)/.local/bin/
 	@echo "You can enjoy now"
 
-update :
+update:
 	cd $(HOME)/$(MARV)
 	git pull
 	make -C $(HOME)/$(MARV) build
 
 # =============================================================================
 
-re : fclean all
-
-all : $(CMD_EXE) link $(EXE) build
-
-.PHONY: all clean fclean uninstall re link build
+.PHONY: clean fclean uninstall re link build all

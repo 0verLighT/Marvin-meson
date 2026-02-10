@@ -1,23 +1,20 @@
 #include "libcmd.h"
+#include "list_cmd.h"
 
 int main(int argc, char **argv)
 {
+	char	*cmd;
+	struct cmd *cmd_list;
+
 	if (argc < 2)
 		return (1);
-	char	*cmd;
-	struct cmd *c;
-
 	cmd = argv[1];
-	c = commands_list;
-	while (c->name)
+	cmd_list = commands_list;
+	while (cmd_list->name)
 	{
-		if (!strcmp(cmd, c->name))
-			return (c->fn(argc - 2, argv + 2));
-		c++;
+		if (!strcmp(cmd, cmd_list->name))
+			return (cmd_list->fn(argc - 2, argv + 2));
+		cmd_list++;
 	}
-	/* Il faut trouver un moyen de pouvoir executer les binaires du dossier
-	 *
-	 * .alfred/bin
-	*/
 	return (1);
 }
