@@ -1,26 +1,23 @@
 #include "libcmd.h"
 
-int cmd_update(int argc, char **argv)
+int	cmd_update(int argc, char **argv)
 {
-    (void)argc;
-    (void)argv;
+	char	*home;
+	char	*command;
 
-    char *home = getenv("HOME");
-    if (!home)
-        return (1);
-
-    size_t len = strlen("make -C ") + strlen(home) + strlen("/.marvin update") + 1;
-    char *command = malloc(len);
-    if (!command) {
-        return 1; // Échec de l'allocation
-    }
-
-    strcpy(command, "make -C ");
-    strcat(command, home);
-    strcat(command, "/.marvin update");
-
-    system(command);
-    free(command);
-
-    return (0);
+	(void)argc;
+	(void)argv;
+	home = getenv("HOME");
+	if (!home)
+		return (1);
+	command = malloc(strlen("make -C ") + strlen(home) +
+					strlen("/.marvin update") + 1);
+	strcpy(command, "make -C ");
+	strcat(command, home);
+	strcat(command, "/.marvin update");
+	system(command);
+	free(command);
+	if (!command)
+		return (1);
+	return (0);
 }

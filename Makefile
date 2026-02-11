@@ -15,13 +15,9 @@ SRC =	$(DS)printable.c \
         $(DS)cmd_help.c \
         $(DS)cmd_update.c
 
-CMD_LIST =	bbl
-
 CMD_PATH = includes/cmd_path.h
 
-CMD_SRC = $(addprefix $(CMD)cmd_, $(addsuffix .c, $(CMD_LIST)))
-
-CMD_EXE = $(addprefix $(BIN), $(CMD_LIST))
+CMD_LIST =	bubble
 
 # =============================================================================
 
@@ -29,49 +25,48 @@ CMD_EXE = $(addprefix $(BIN), $(CMD_LIST))
 OBJ = $(patsubst $(DS)%.c,$(BUILD)%.o,$(SRC))
 
 $(BUILD)%.o: $(DS)%.c
-	mkdir -p $(BUILD)
-	$(CC) $(CFLAGS) $(INCLUDE) -c $< -o $@
+	@mkdir -p $(BUILD)
+	@$(CC) $(CFLAGS) $(INCLUDE) -c $< -o $@
+	@echo "CC $<\n\t>$@"
 
 # =============================================================================
 
-# === UTILS RULES ============================================================
+# === UTILS RULES =============================================================
 
 re: fclean all bin
 
 all: $(EXE) build
+
+bin: $(CMD_LIST)
 
 # =============================================================================
 
 # === CLEAN RULES =============================================================
 
 clean: 
-	rm -Rf "$(BUILD)"
+	@rm -Rf "$(BUILD)"
+	@echo "DELETE $(BUILD) FOLDER"
 
 fclean: clean
-	rm -f $(HOME)/.local/bin/$(EXE)
-	echo "struct cmd commands_list[] = {" > $(CMD_PATH)
+	@rm -f $(HOME)/.local/bin/$(EXE)
+	@echo "DELETE $(EXE)"
 
 uninstall: remove
-	rm -Rf $(PROJ)
-	echo "Good bye"
+	@rm -Rf $(PROJ)
+	@echo "Good bye"
 	
 # =============================================================================
 
-# === INSTALL RULES ============================================================
+# === INSTALL RULES ===========================================================
 
-$(CMD_EXE): $(CMD_SRC)
+$(CMD_LIST):
 	@mkdir -p $(BIN)
-	$(CC) $(CFLAGS) $(INCLUDE) $< $(OBJ) -o $@
-	echo "	{"${$@%"$(BIN)"}"}, $@}," >> $(CMD_PATH)
+	$(CC) $(CFLAGS) $(INCLUDE) "$(CMD)cmd_$@.c" $(OBJ) -o "$(BIN)$@"
 
 link:
-	echo "	{NULL: NULL}" >> $(CMD_PATH)
-	echo "};" >> $(CMD_PATH)
 
 $(EXE): $(OBJ)
 	$(CC) $(CFLAGS) $(INCLUDE)  main.c $(OBJ) -o $(EXE)
-
-bin: $(CMD_EXE) link
 
 build: $(EXE)
 	mv $(EXE) $(HOME)/.local/bin/
