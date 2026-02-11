@@ -17,6 +17,8 @@ SRC =	$(DS)printable.c \
 
 CMD_LIST =	bbl
 
+CMD_PATH = includes/cmd_path.h
+
 CMD_SRC = $(addprefix $(CMD)cmd_, $(addsuffix .c, $(CMD_LIST)))
 
 CMD_EXE = $(addprefix $(BIN), $(CMD_LIST))
@@ -47,7 +49,7 @@ clean:
 
 fclean: clean
 	rm -f $(HOME)/.local/bin/$(EXE)
-	echo "struct cmd commands_list[] = {" > includes/cmd_path.h
+	echo "struct cmd commands_list[] = {" > $(CMD_PATH)
 
 uninstall: remove
 	rm -Rf $(PROJ)
@@ -60,11 +62,11 @@ uninstall: remove
 $(CMD_EXE): $(CMD_SRC)
 	@mkdir -p $(BIN)
 	$(CC) $(CFLAGS) $(INCLUDE) $< $(OBJ) -o $@
-	echo "	{"${$@%"$(BIN)"}"}, $@}," >> includes/cmd_path.h
+	echo "	{"${$@%"$(BIN)"}"}, $@}," >> $(CMD_PATH)
 
 link:
-	echo "	{NULL: NULL}" >> includes/cmd_path.h
-	echo "};" >> includes/cmd_path.h
+	echo "	{NULL: NULL}" >> $(CMD_PATH)
+	echo "};" >> $(CMD_PATH)
 
 $(EXE): $(OBJ)
 	$(CC) $(CFLAGS) $(INCLUDE)  main.c $(OBJ) -o $(EXE)
