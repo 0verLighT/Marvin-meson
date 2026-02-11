@@ -24,34 +24,31 @@ export PATH=$PATH:$HOME/.local/bin/
 
 If you have ideas for useful commands or features, feel free to open an issue to present your suggestion ! If the idea you suggest is not universal, give it as an add-on.
 
-## Principal Roadmap
+## Download Roadmap
 
-- [x] Add download script with export in PATH
-- [ ] Add graphic annotation to the build and remove functions
-- [ ] Add PWD variable in the Makefile for a deinstall command more powerful
+- [x] Add download script with export in PATH.
+- [ ] Add graphic annotation to the build and remove functions.
+- [x] Add PWD variable in the Makefile for a deinstall command more powerful.
 
 ## Basic Command Roadmap
 
-- [ ] Add basic printable commands like `bbl`, `albbl`, ou `show`
-- [ ] Add `emot` command
-- [ ] Add `shutdown` command
-- [ ] Add `reboot` command
-- [ ] Add `timer` command
-- [ ] Add `date` commande with flag for syntaxe
-- [ ] Add basic universal commands (based on user ideas)
+- [ ] Add basic printable commands like `bbl`, `albbl`, ou `show`.
+- [ ] Add `shutdown` command.
+- [ ] Add `reboot` command.
+- [ ] Add `timer` command.
+- [ ] Add `date` command with flag for syntaxe.
+- [ ] Add `search` command, a more powerful version of cd.
+- [ ] Add basic universal commands (based on user ideas).
 
-## Macro Command Roadmap
+## Add-on Roadmap 
 
-- [ ] Add `macropy` command
-- [ ] Add `reload` command for user functions
-- [ ] Add `delete` command for user functions
-- [ ] Add `macroc` command
-- [ ] Add `macrocpp` command
-- [ ] Add `macrosh` command
-- [ ] Add `macroasm` command
+- [ ] Create a separate repository for add-ons, including themes and bundles for less universal utilities.
+- [ ] Add install command for install add-ons.
+- [ ] Add load command for load add-ons.
+- [ ] Add uninstall command for uninstall add-ons.
 
 ## Other (If Time Permits)
 
-- [ ] Add a library with Marvin’s basic commands
-- [ ] Create a separate repository for add-ons, including themes and bundles for less universal utilities
+
 - [ ] Create the Marvin website for centralize Marvin download, Add-ons, themes, function bundle and more !
+
