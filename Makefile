@@ -7,6 +7,7 @@ CFLAGS = -Wall -Wextra -Werror
 INCLUDE = -Iincludes
 BUILD = $(PROJ)build/
 BIN = $(PROJ)bin/
+USRBIN = $(PROJ)usr/bin/
 DS = $(PROJ)src/
 CMD = $(PROJ)cmd/
 SRC =	$(DS)printable.c \
@@ -67,13 +68,14 @@ $(EXE): $(OBJ)
 	$(CC) $(CFLAGS) $(INCLUDE)  main.c $(OBJ) -o $(EXE)
 
 build: $(EXE) bin
+	mkdir -p $(USRBIN)
 	mv $(EXE) $(HOME)/.local/bin/
 	@echo "You can enjoy now"
 
 update:
-	cd $(HOME)/$(MARV)
+	cd $(PROJ)
 	git pull
-	make -C $(HOME)/$(MARV) build
+	make -C $(PROJ) build
 
 # =============================================================================
 

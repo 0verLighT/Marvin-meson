@@ -2,6 +2,10 @@
 
 Marvin is a terminal assistant who simplifies complex tasks with basic commands and more with macros, functions that are added by the user.
 
+## Usage
+
+If you want to add your own command the actual methode is to move your binary to the folder `~/.marvin/usr/bin/`
+
 ## Commands
 
 | Command | Description |
@@ -48,7 +52,6 @@ If you have ideas for useful commands or features, feel free to open an issue to
 - [ ] Add uninstall command for uninstall add-ons.
 
 ## Other (If Time Permits)
-
 
 - [ ] Create the Marvin website to centralize Marvin downloads, Add-ons, themes, function bundles, and more !
 

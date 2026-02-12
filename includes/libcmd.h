@@ -23,5 +23,7 @@ typedef struct s_cmd_path
 
 int	cmd_help(int argc, char **argv);
 int	cmd_update(int argc, char **argv);
+int	path_cmd(char *argv[], char *env[], char *path);
+int	integrate_cmd(int argc, char *argv[]);
 
 #endif

@@ -1,13 +1,17 @@
 #include "libcmd.h"
 #include "list_cmd.h"
 
-int	ft_secondary_cmd(char *argv[], char *env[])
+int	path_cmd(char *argv[], char *env[], char *path)
 {
 	char	*cmd_path;
 	pid_t	pid;
 
-	cmd_path = getenv("HOME");
-	strcat(cmd_path, "/.marvin/bin/");
+	cmd_path = malloc(strlen(getenv("HOME"))
+			+ strlen(path) + strlen(argv[1]) + 2);
+	if (!cmd_path)
+		return (-1);
+	strcpy(cmd_path, getenv("HOME"));
+	strcat(cmd_path, path);
 	strcat(cmd_path, argv[1]);
 	if (!access(cmd_path, X_OK))
 	{
@@ -20,15 +24,16 @@ int	ft_secondary_cmd(char *argv[], char *env[])
 			exit(0);
 		}
 		waitpid(pid, NULL, 0);
+		free(cmd_path);
 		return (0);
 	}
-	printf("Command doesn\'t exist.");
-	return (1);
+	free(cmd_path);
+	return (-1);
 }
 
-int	ft_primary_cmd(int argc, char *argv[])
+int	integrate_cmd(int argc, char *argv[])
 {
-	char		*cmd;
+	char	*cmd;
 	t_cmd	*cmd_list;
 
 	cmd = argv[1];
@@ -44,12 +49,19 @@ int	ft_primary_cmd(int argc, char *argv[])
 
 int	main(int argc, char *argv[], char *env[])
 {
-	int	result_primary_cmd;
+	int	result_cmd;
 
 	if (argc < 2)
 		return (1);
-	result_primary_cmd = ft_primary_cmd(argc, argv);
-	if (result_primary_cmd >= 0)
-		return (result_primary_cmd);
-	return (ft_secondary_cmd(argv, env));
+	result_cmd = integrate_cmd(argc, argv);
+	if (result_cmd >= 0)
+		return (result_cmd);
+	result_cmd = path_cmd(argv, env, "/.marvin/usr/bin/");
+	if (result_cmd >= 0)
+		return (result_cmd);
+	result_cmd = path_cmd(argv, env, "/.marvin/bin/");
+	if (result_cmd >= 0)
+		return (result_cmd);
+	printf("Command doesn\'t exist.");
+	return (1);
 }

@@ -10,8 +10,8 @@ int	cmd_update(int argc, char **argv)
 	home = getenv("HOME");
 	if (!home)
 		return (1);
-	command = malloc(strlen("make -C ") + strlen(home) +
-					strlen("/.marvin update") + 1);
+	command = malloc(strlen("make -C ") + strlen(home)
+			+ strlen("/.marvin update") + 1);
 	strcpy(command, "make -C ");
 	strcat(command, home);
 	strcat(command, "/.marvin update");
