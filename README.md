@@ -1,21 +1,21 @@
 # Marvin the Paranoid Assistant
 
-Marvin is a terminal assistant who simplify complexe task with basic commands and more with macros, functions who be add by the user.
+Marvin is a terminal assistant who simplifies complex tasks with basic commands and more with macros, functions that are added by the user.
 
 ## Commands
 
 | Command | Description |
 | --- | --- |
-| update | A commande for update Marvin to the next version |
+| update | A command to update Marvin to the next version |
 
 ## Download
 
-To download Marvin you can use this command in your shell terminal.
+To download Marvin, you can use this command in your shell terminal.
 ```bash
 curl https://raw.githubusercontent.com/SeigneurLefou/Marvin-the-Paranoid-Assistant/refs/heads/main/install.sh | sh
 ```
 
-If it doesn't work add this command to your config file :
+If it doesn't work, add this command to your config file :
 ```bash
 export PATH=$PATH:$HOME/.local/bin/
 ```
@@ -32,23 +32,23 @@ If you have ideas for useful commands or features, feel free to open an issue to
 
 ## Basic Command Roadmap
 
-- [ ] Add basic printable commands like `bbl`, `albbl`, ou `show`.
+- [ ] Add basic printable commands like `bbl`, `albbl`, or `show`.
 - [ ] Add `shutdown` command.
 - [ ] Add `reboot` command.
 - [ ] Add `timer` command.
-- [ ] Add `date` command with flag for syntaxe.
+- [ ] Add `date` command with flags for syntax.
 - [ ] Add `search` command, a more powerful version of cd.
 - [ ] Add basic universal commands (based on user ideas).
 
 ## Add-on Roadmap 
 
 - [ ] Create a separate repository for add-ons, including themes and bundles for less universal utilities.
-- [ ] Add install command for install add-ons.
+- [ ] Add install command for installing add-ons.
 - [ ] Add load command for load add-ons.
 - [ ] Add uninstall command for uninstall add-ons.
 
 ## Other (If Time Permits)
 
 
-- [ ] Create the Marvin website for centralize Marvin download, Add-ons, themes, function bundle and more !
+- [ ] Create the Marvin website to centralize Marvin downloads, Add-ons, themes, function bundles, and more !
 
