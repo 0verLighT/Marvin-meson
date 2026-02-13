@@ -1,16 +1,17 @@
 project(
   '.marvin',
   'c',
-  meson_version : '>= 1.3.0',
+  meson_version : '>= 0.56.0',
   version : '0.0.1',
   license : 'GNU',
-  default_options : ['warning_level=2', 'optimization=3'],
+  default_options : ['warning_level=3', 'optimization=3'],
 )
+
+fs = import('fs')
 
 inc = [include_directories('includes')]
 
 sources = [
-  'main.c',
   'src/alloc.c',
   'src/printable.c',
   'src/warping.c',
@@ -18,9 +19,29 @@ sources = [
   'src/cmd_update.c',
 ]
 
-# In C it's not impossible to compile code with same name function because gcc/cc doesn't name mangling
-# and in Assembly your code cannont have some function with same name.
-# 'cmd/cmd_bubble.c'
+command = [
+  'cmd/cmd_say.c',
+]
+
+list_command = []
+
+foreach file : command
+  name_command = fs.stem(file)
+  name_command = name_command.substring(4)
+  message(name_command)
+  cmd_sources  = [
+    file,
+    sources,
+  ]
+  executable(
+    name_command,
+    cmd_sources,
+    include_directories: inc,
+  )
+  list_command += name_command
+endforeach
+
+sources += 'main.c'
 
 marvin = executable(
   'marvin',
@@ -28,3 +49,5 @@ marvin = executable(
   include_directories : inc,
 )
 
+summary({'bindir': get_option('bindir')}, section: 'Directories')
+summary({'Commande build' : list_command}, section: 'Configuartion')
