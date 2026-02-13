@@ -1,5 +1,5 @@
-#include "libcmd.h"
-#include "list_cmd.h"
+#include "marvin.h"
+#include "global_variable.h"
 
 int	path_cmd(char *argv[], char *env[], char *path)
 {
