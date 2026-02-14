@@ -4,7 +4,6 @@ char	*centralize_text(const char *str, char c, size_t len)
 {
 	size_t	slen;
 	char	*res;
-	char	*pre;
 	char	*post;
 
 	if (!str || !c)
