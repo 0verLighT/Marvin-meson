@@ -24,6 +24,5 @@ jobs:
       - uses: actions/checkout@v6
       - name: Ubuntu with make
         run: |
-          make fclean
-          make re
-          make build
+          chmod 700 ./install.sh
+          ./install.sh
